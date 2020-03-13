@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="vi" prefix="#">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link href="~/staticTheme/img/favicon.ico" rel="shortcut icon" />
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="~/staticTheme/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/staticTheme/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/staticTheme/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="~/staticTheme/css/flaticon.css" />
+    <link rel="stylesheet" href="~/staticTheme/css/slicknav.min.css" />
+
+    <!-- Main Stylesheets -->
+    <link rel="stylesheet" href="~/staticTheme/css/style.css" />
+
+</head>
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header-section" style="background: #fff">
+        <style>
+            html {
+              scroll-behavior: smooth;
+            }
+        </style>
+        <nav class="header-nav">
+            <a href="/" class="site-logo">
+                <img src="~/staticTheme/img/logogl-01.jpg" class="img-logo" alt="">
+            </a>
+            <ul class="main-menu row">
+                <li><a href="/" class="active">Trang chủ</a></li>
+                <li><a href="/Home/BangGia">Bảng giá</a></li>
+                <li><a href="/#sectionDangKyThanhVien">Đăng ký thành viên</a></li>
+                <li><a href="/Home/LienHe">Liên hệ</a></li>
+            </ul>
+            <div class="header-right">
+                <a href="#" class="hr-btn" style="color: rgb(69, 127, 119)"><i class="flaticon-029-telephone-1" style="color: white"></i>Gọi ngay! </a>
+                <a class="hr-btn hr-btn-2" style="color: white" href="tel:0845971859">084 5971 859</a>
+            </div>
+        </nav>
+    </header>
+    <!-- Header Section end -->
+    @RenderBody()
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-12 col-sm-6" style="text-align: center">
+                    <a href="index.html" class="footer-logo">
+                        <img src="~/staticTheme/img/LOGO HP NEW-01 - Footer.png" alt="">
+                    </a> <br />
+                    <p style="text-align: center; font-weight: 500; margin-top: 10px">CÔNG TY TNHH THƯƠNG MẠI & DỊCH VỤ GIA ĐÌNH</p>
+
+                    <p style="text-align: center; font-weight: 600; margin-top: 10px" class="textfooter">UY TÍN - CHẤT LƯỢNG - TẬN TÂM</p>
+
+                </div>
+
+                <div class="col-12 col-sm-6" style="align-self: center">
+                    <p>
+                        <i class="fa fa-mobile-phone" aria-hidden="true" style="font-size: 30px"></i>
+                        Hotline: 084 5971 859
+                    </p>
+                    <p>
+                        <i class="fa fa-clock-o" aria-hidden="true" style="font-size: 25px"></i>
+                        Thứ 2 - Chủ nhật : 7:00 am - 9:00pm
+                    </p>
+                    <p>
+                        <i class="fa fa-map-marker" aria-hidden="true" style="font-size: 25px"></i>
+                        Ngõ 1, đường Đình, An Phú, Trâu Quỳ, Gia Lâm, Hà Nội.
+                    </p>
+                    <p>
+                        <i class="fa fa-map-marker" aria-hidden="true" style="font-size: 25px"></i>
+                        102 - A1 , phố 8/3, Quỳnh Mai, Hai Bà Trưng, Hà Nội.
+                    </p>
+                </div>
+
+                @*<div class="col-sm-12 col-md-4">
+                    
+                </div>*@
+                @*<div class="col-sm-12 col-md-4">
+                   
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    
+                </div>*@
+            </div>
+            <div class="copyright">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> Bản quyền thuộc về Core Value
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section end -->
+    <!--====== Javascripts & Jquery ======-->
+    <script src="~/staticTheme/js/jquery-3.2.1.min.js"></script>
+    <script src="~/staticTheme/js/bootstrap.min.js"></script>
+    <script src="~/staticTheme/js/jquery.slicknav.min.js"></script>
+    <script src="~/staticTheme/js/owl.carousel.min.js"></script>
+    <script src="~/staticTheme/js/jquery-ui.min.js"></script>
+    <script src="~/staticTheme/js/main.js"></script>
+    <a id="back2Top" title="Back to top" href="#"><i class="fa fa-arrow-circle-o-right"></i></a>
+    <style>
+         #back2Top {
+        width: 40px;
+        line-height: 40px;
+        overflow: hidden;
+        z-index: 999;
+        display: none;
+        cursor: pointer;
+        -moz-transform: rotate(270deg);
+        -webkit-transform: rotate(270deg);
+        -o-transform: rotate(270deg);
+        -ms-transform: rotate(270deg);
+        transform: rotate(270deg);
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: none;
+        color: #2d2f2e;
+        text-align: center;
+        font-size: 30px;
+        text-decoration: none;
+        
+    }
+
+        #back2Top:hover {
+            background-color: none;
+            color: #000;
+        }
+    </style>
+</body>
+
+</html>
