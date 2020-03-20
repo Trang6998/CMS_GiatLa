@@ -259,8 +259,8 @@
                     { tt: 'Chưa thanh toán', value: 2 },
                 ],
                 lstGioDat: [
-                    { tt: '7h - 9h', value: 1 },
-                    { tt: '19h - 21h', value: 2 },
+                    { tt: '7h30 - 9h', value: 1 },
+                    { tt: '18h - 20h30', value: 2 },
                 ]
             }
         },

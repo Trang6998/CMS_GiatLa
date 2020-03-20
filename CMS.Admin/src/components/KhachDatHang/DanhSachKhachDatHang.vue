@@ -42,8 +42,8 @@
                     <v-flex xs12 md4>
                         <label>Khung giờ lấy đồ</label>
                         <v-radio-group v-model="searchParamsKhachDatHang.gioLayDo" row hide-details style="margin-top: 0px" @change="getDataFromApi(searchParamsKhachDatHang)">
-                            <v-radio label="7h - 9h" :value="1"></v-radio>
-                            <v-radio label="19h - 21h" :value="2"></v-radio>
+                            <v-radio label="7h30 - 9h" :value="1"></v-radio>
+                            <v-radio label="18h - 20h30" :value="2"></v-radio>
                         </v-radio-group>
                     </v-flex>
                     <v-flex xs12 md4>
