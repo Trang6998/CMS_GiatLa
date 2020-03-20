@@ -67,7 +67,7 @@
                                 <td class="text-md-center" style="width:20px">{{props.index + 1}}</td>
                                 <td class="text-md-center">{{ props.item.NguoiDung.TenNguoiDung }}</td>
                                 <td class="text-md-center">{{ props.item.NgayDat === null ? "" : props.item.NgayDat|moment('DD/MM/YYYY') }}</td>
-                                <td class="text-md-center">{{ props.item.GioDat === 1 ? "7h - 9h" : "19h - 21h" }}</td>
+                                <td class="text-md-center">{{ props.item.GioDat === 1 ? "7h30 - 9h" : "18h - 20h30" }}</td>
                                 <td class="text-md-center">{{ props.item.ThanhTien }}</td>
                                 <td class="text-md-center">{{ props.item.TinhTrangXuLy === 1 ? "Chưa xử lý" : props.item.TinhTrangXuLy === 2 ? "Đang xử lý" : "Đã xử lý"  }}</td>
                                 <td class="text-md-center">{{ props.item.TinhTrangThanhToan === 1 ? "Đã thanh toán" : "Chưa thanh toán" }}</td>

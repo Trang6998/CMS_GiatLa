@@ -7,8 +7,8 @@
 
         <v-toolbar color="teal lighten-2" dark
                    height="50">
-            <a href="/">
-                <!--<img v-bind:src="'http://www.nguyensieu.edu.vn/imgs/logo.jpg'" height="36" alt="Insight">-->
+            <a href="https://giatlahp.vn">
+                <img v-bind:src="'https://giatlahp.com/images/LOGO%20HP%20NEW-01.png'" style="margin-top: 5px" height="36" alt="GiatLaHP">
             </a>
             <v-toolbar-title class="ml-0 pl-3">
                 <span class="hidden-sm-and-down" style="font-size:20px;">Quản lý giặt là</span>
