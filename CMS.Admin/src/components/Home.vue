@@ -1,6 +1,14 @@
 <template>
     <v-card style="width: 100%">
         <v-layout row wrap class="ma-3">
+            <v-autocomplete v-model="searchParamsThongKeNgay.coSoID"
+                            :items="dsCoSo"
+                            item-text="TenCoSo"
+                            item-value="CoSoID"
+                            label="Chọn đơn cơ sở / đại lý / CTV cần thống kê"></v-autocomplete>
+        </v-layout>
+        <v-layout row wrap class="ma-3">
+            
             <h2 style="padding: 10px 10px 0px 0px">Thống kê số liệu trong ngày: </h2>
             <v-flex xs3 style="margin-top: -16px">
                 <v-datepicker v-model="searchParamsThongKeNgay.ngay"></v-datepicker>
@@ -68,7 +76,9 @@
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
     import ThongKeApi, { ThongKeTuanApiSearchParams , ThongKeNgayApiSearchParams } from '@/apiResources/ThongKeApi';
-import { debug } from 'util';
+    import { debug } from 'util';
+import { CoSo } from '../models/CoSo';
+import CoSoApi, { CoSoApiSearchParams } from '../apiResources/CoSoApi';
 
     export default Vue.extend({
         data() {
@@ -94,7 +104,15 @@ import { debug } from 'util';
                     doanhThu: 0,
                     soDonTang: 0,
                     doanhThuTang: 0
-                }
+                },
+                searchParamsCoSo: { rowsPerPage: 0 } as CoSoApiSearchParams,
+                dsCoSo: [] as CoSo[]
+            }
+        },
+        watch: {
+            'searchParamsThongKeNgay.coSoID': function () {
+                debugger
+                this.searchParamsThongKeTuan.coSoID = this.searchParamsThongKeNgay.coSoID;
             }
         },
         created() {
@@ -108,6 +126,7 @@ import { debug } from 'util';
             this.searchParamsThongKeTuan.nam = currentYear;
             this.thongKeTuan()
             this.thongKeNgay()
+            this.getCoSo();
         },
         methods: {
             thongKeTuan() {
@@ -125,7 +144,12 @@ import { debug } from 'util';
                 ThongKeApi.thongKeNgay(this.searchParamsThongKeNgay).then(res => {
                     this.thongTinThongKeTrongNgay = res
                 })
-            }
+            },
+            getCoSo(): void {
+                CoSoApi.search(this.searchParamsCoSo).then(res => {
+                    this.dsCoSo = res.Data;
+                })
+            },
         }
     })
 </script>

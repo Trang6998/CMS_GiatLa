@@ -23,7 +23,7 @@ namespace CMS.Controllers
         {
             using (var db = new ApplicationDbContext())
             {
-                IQueryable<Users> results = db.Users;
+                IQueryable<Users> results = db.Users.Include(x => x.CoSo);
 
                 if (!string.IsNullOrWhiteSpace(q))
                     results = results.Where(o => o.UserName.Contains(q) || o.Email.Contains(q));
@@ -109,6 +109,7 @@ namespace CMS.Controllers
 
                 userExits.Email = users.Email;
                 userExits.Active = users.Active;
+                userExits.CoSoID = users.CoSoID;
                 db.Entry(userExits).State = EntityState.Modified;
                 var dsAccessTokens = db.AccessTokens.Where(x => x.UserName == userExits.UserName);
                 db.AccessTokens.RemoveRange(dsAccessTokens);

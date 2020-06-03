@@ -3,12 +3,14 @@ import { BaseApi } from './BaseApi'
 import { PaginatedResponse,Pagination } from './PaginatedResponse'
 
 export interface ThongKeTuanApiSearchParams extends Pagination {
+    coSoID?: number;
     tuan: number;
     thang: number;
     nam: number;
 }
 export interface ThongKeNgayApiSearchParams extends Pagination {
     ngay: Date;
+    coSoID?: number;
 }
 class ThongKeApi extends BaseApi {
     thongKeTuan(searchParams: ThongKeTuanApiSearchParams): Promise<any> {

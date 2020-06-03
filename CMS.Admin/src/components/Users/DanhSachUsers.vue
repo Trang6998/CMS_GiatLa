@@ -24,12 +24,13 @@
                                       class="table-border table">
                             <template slot="items" slot-scope="props">
                                 <td class="text-xs-center">{{ props.item.UserName }}</td>
+                                <td class="text-xs-center">{{ props.item.CoSo? props.item.CoSo.TenCoSo :"" }}</td>
                                 <td class="text-xs-center">{{ props.item.Email }}</td>
                                 <td class="text-xs-center">{{ props.item.CreatedTime | moment('DD/MM/YYYY, HH:mm') }}</td>
                                 <td class="text-xs-center">{{ props.item.Active ? "Đang hoạt động" : "Dừng hoạt động" }}</td>
                                 <td class="text-xs-center">
                                     <v-layout nowrap>
-                                        <v-btn flat icon small  @click="showModalThemSua(true, props.item)" class="ma-0">
+                                        <v-btn flat icon small @click="showModalThemSua(true, props.item)" class="ma-0">
                                             <v-icon small>edit</v-icon>
                                         </v-btn>
                                         <v-btn flat color="red" icon small class="ma-0" @click="confirmDelete(props.item)">
@@ -72,6 +73,7 @@
                 dsUsers: [] as Users[],
                 tableHeader: [
                     { text: 'Tài khoản', value: 'UserName', align: 'center', sortable: true },
+                    { text: 'Trực thuộc', value: 'Email', align: 'center', sortable: true },
                     { text: 'Email', value: 'Email', align: 'center', sortable: true },
                     { text: 'Ngày tạo', value: 'CreatedTime', align: 'center', sortable: true },
                     { text: 'Hoạt động', value: 'Active', align: 'center', sortable: true },

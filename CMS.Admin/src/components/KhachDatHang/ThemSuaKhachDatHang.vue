@@ -368,6 +368,7 @@
                         } else {
                             this.loading = true;
                             this.loadingSave = true;
+                            this.khachDatHang.UserID = this.$store.state.user.Profile.UserId;
                             KhachDatHangApi.insert(this.khachDatHang).then(res => {
                                 this.khachDatHang = res;
                                 this.searchParamsChiTietDoGiat.khachDatHangID = res.KhachDatHangID

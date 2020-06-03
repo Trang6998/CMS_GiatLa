@@ -40,7 +40,7 @@ namespace CMS.Controllers
     public class ThongKeController : BaseApiController
     {
         [HttpGet, Route("tuan")]
-        public async Task<IHttpActionResult> ThongKeTheoTuan([FromUri]int tuan, [FromUri]int thang, [FromUri]int nam)
+        public async Task<IHttpActionResult> ThongKeTheoTuan([FromUri]int? coSoID, [FromUri]int tuan, [FromUri]int thang, [FromUri]int nam)
         {
             using (var db = new ApplicationDbContext())
             {
@@ -67,7 +67,11 @@ namespace CMS.Controllers
                 for(int i = 0; i < soNgayTrongTuan; i++)
                 {
                     DateTime ngayThongKe = ngayBatDau.AddDays(i);
-                    var lstDonDatHang = db.KhachDatHang.Where(x => x.NgayDat == ngayThongKe).ToList();
+                    var lstDonDatHang = db.KhachDatHang.Include(x => x.Users).Where(x => x.NgayDat == ngayThongKe).ToList();
+
+                    if (coSoID.HasValue && coSoID > 0)
+                        lstDonDatHang = lstDonDatHang.Where(x => x.Users.CoSoID == coSoID).ToList();
+
                     res.Add(new ThongKe()
                     {
                         GiaTri1 = lstThu[(int)ngayThongKe.DayOfWeek],
@@ -81,14 +85,30 @@ namespace CMS.Controllers
         }
 
         [HttpGet, Route("ngay")]
-        public async Task<IHttpActionResult> ThongKeTheoNgay([FromUri]DateTime ngay)
+        public async Task<IHttpActionResult> ThongKeTheoNgay([FromUri]DateTime ngay, [FromUri]int? coSoID)
         {
             using (var db = new ApplicationDbContext())
             {
-                var lstDonDatHangHomNay = db.KhachDatHang.Where(x => x.NgayDat == ngay);
+                var lstDonDatHangHomNay = db.KhachDatHang.Where(x => x.NgayDat == ngay).Include(x => x.Users).ToList();
                 DateTime ngayHomQua = ngay.AddDays(-1);
-                var lstDonDatHangHomQua = db.KhachDatHang.Where(x => x.NgayDat == ngayHomQua);
-
+                var lstDonDatHangHomQua = db.KhachDatHang.Where(x => x.NgayDat == ngayHomQua).Include(x => x.Users).ToList();
+                if (coSoID.HasValue && coSoID > 0)
+                {
+                    lstDonDatHangHomNay = lstDonDatHangHomNay.Where(x => x.Users.CoSoID == coSoID).ToList();
+                    lstDonDatHangHomQua = lstDonDatHangHomNay.Where(x => x.Users.CoSoID == coSoID).ToList();
+                }
+                //if (lstDonDatHangHomNay == null || lstDonDatHangHomQua == null)
+                //{
+                //    var res1 = new
+                //    {
+                //        soDon = lstDonDatHangHomNay.Count(),
+                //        doanhThu = lstDonDatHangHomNay != null ? lstDonDatHangHomNay.Sum(x => x.ThanhTien) : 0,
+                //        soDonTang = lstDonDatHangHomNay.Count() - lstDonDatHangHomQua.Count(),
+                //        doanhThuTang = 0
+                //    };
+                //    return Ok(res1);
+                //}
+                
                 var res = new
                 {
                     soDon = lstDonDatHangHomNay.Count(),

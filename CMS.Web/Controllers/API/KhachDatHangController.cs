@@ -7,6 +7,7 @@ using HVITCore.Controllers;
 using System.Data.Entity.Infrastructure;
 using CMS.Models;
 using CMS.Services;
+using System.Security.Claims;
 
 namespace CMS.Controllers
 {

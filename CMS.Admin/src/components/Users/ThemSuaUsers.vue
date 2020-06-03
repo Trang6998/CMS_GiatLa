@@ -26,7 +26,7 @@
                             <v-text-field v-model="users.Password"
                                           label="Mật khẩu"
                                           type="text"
-                                           :error-messages="errors.collect('Mật khẩu', 'frmAddEdit')"
+                                          :error-messages="errors.collect('Mật khẩu', 'frmAddEdit')"
                                           v-validate="'required'" class="ml-1 mr-1"
                                           data-vv-scope="frmAddEdit"
                                           data-vv-name="Mật khẩu"
@@ -53,8 +53,20 @@
                                             @change="getDataFromApi(searchParamsDoGiat)"
                                             :items="dsLoaiTaiKhoan"
                                             item-text="TenLoai"
-                                            item-value="LoaiTaiKhoanID" 
+                                            item-value="LoaiTaiKhoanID"
                                             clearable></v-autocomplete>
+                        </v-flex>
+                        <v-flex xs12 md6>
+                            <v-autocomplete v-model="users.CoSoID"
+                                            :items="dsCoSo"
+                                            item-text="TenCoSo"
+                                            item-value="CoSoID"
+                                            label="Phân loại"
+                                            :error-messages="errors.collect('Phân loại', 'formDoGiat')"
+                                            v-validate="'required'"
+                                            data-vv-scope="formDoGiat"
+                                            data-vv-name="Phân loại"
+                                            required></v-autocomplete>
                         </v-flex>
                         <v-flex xs12 md6>
                             <v-checkbox v-model="users.Active" label="Hoạt động"
@@ -63,7 +75,6 @@
                                         data-vv-scope="frmAddEdit"
                                         data-vv-name="Hoạt động"></v-checkbox>
                         </v-flex>
-
                     </v-layout>
                 </v-form>
             </v-card-text>
@@ -83,6 +94,8 @@
     import LoaiTaiKhoanApi, { LoaiTaiKhoanApiSearchParams } from '@/apiResources/LoaiTaiKhoanApi';
     import { Users } from '@/models/Users';
     import { LoaiTaiKhoan } from '@/models/LoaiTaiKhoan';
+import { CoSo } from '../../models/CoSo';
+import CoSoApi, { CoSoApiSearchParams } from '../../apiResources/CoSoApi';
     export default Vue.extend({
         $_veeValidate: {
             validator: 'new'
@@ -98,9 +111,11 @@
                 loadingSave: false,
                 searchParamsUsers: {} as UsersApiSearchParams,
                 searchParamsLoaiTaiKhoan: { rowsPerPage: 0 } as LoaiTaiKhoanApiSearchParams,
+                searchParamsCoSo: { rowsPerPage: 0 } as CoSoApiSearchParams,
                 active: [] as any[],
                 open: [],
                 usersID: 0,
+                dsCoSo: [] as CoSo[]
             }
         },
         watch: {
@@ -115,6 +130,7 @@
                 this.isShow = true;
                 this.isUpdate = isUpdate;
                 this.getLoaiTaiKhoan();
+                this.getCoSo();
                 if (isUpdate) {
                     this.usersID = item.UserId;
                     this.getDataFromApi(this.usersID);
@@ -132,6 +148,11 @@
             getLoaiTaiKhoan(): void {
                 LoaiTaiKhoanApi.search(this.searchParamsLoaiTaiKhoan).then(res => {
                     this.dsLoaiTaiKhoan = res.Data;
+                })
+            },
+            getCoSo(): void {
+                CoSoApi.search(this.searchParamsCoSo).then(res => {
+                    this.dsCoSo = res.Data;
                 })
             },
             save(): void {

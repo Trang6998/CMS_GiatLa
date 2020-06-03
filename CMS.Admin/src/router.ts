@@ -16,6 +16,7 @@ import DanhSachLoaiDoGiat from './components/LoaiDoGiat/DanhSachLoaiDoGiat.vue';
 import DanhSachNguoiDung from './components/NguoiDung/DanhSachNguoiDung.vue';
 import DanhSachKhachDatHang from './components/KhachDatHang/DanhSachKhachDatHang.vue';
 import DanhSachLienHe from './components/LienHe/DanhSachLienHe.vue';
+import DanhSachCoSo from './components/CoSo/DanhSachCoSo.vue';
 import Home from './components/Home.vue';
 
 Vue.use(Router);
@@ -104,6 +105,12 @@ export default new Router({
             path: '/lienhe',
             name: 'lienHe',
             component: DanhSachLienHe,
+            beforeEnter: guardRoute
+        },
+        {
+            path: '/coso',
+            name: 'coSo',
+            component: DanhSachCoSo,
             beforeEnter: guardRoute
         },
     ],

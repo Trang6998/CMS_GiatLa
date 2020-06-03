@@ -22,7 +22,7 @@ namespace CMS.Models
         public DbSet<NguoiDung> NguoiDung { get; set; }
         public DbSet<LoaiTaiKhoan> LoaiTaiKhoan { get; set; }
         public DbSet<LienHe> LienHe { get; set; }
-       
+        public DbSet<CoSo> CoSo { get; set; }
 
         public void ConfigureModelBuilder(DbModelBuilder modelBuilder)
         {
