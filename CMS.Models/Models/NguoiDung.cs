@@ -15,9 +15,6 @@ namespace CMS.Models
         [MaxLength(100)]
         public string TenNguoiDung { get; set; }
 
-        [MaxLength(50)]
-        public string TenGoi { get; set; }
-
         [MaxLength(15)]
         public string SoDienThoai { get; set; }
 
@@ -35,6 +32,7 @@ namespace CMS.Models
 
         [MaxLength(100)]
         public string Gmail { get; set; }
+        public int? DiemThuong { get; set; }
 
         [InverseProperty("NguoiDung")]
         public virtual ICollection<KhachDatHang> KhachDatHang { get; set; }

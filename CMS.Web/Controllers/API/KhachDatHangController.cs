@@ -139,12 +139,15 @@ namespace CMS.Controllers
 
                 if (khachDatHang == null)
                     return NotFound();
+
+                var nguoiDung = await db.NguoiDung.SingleOrDefaultAsync(o => o.NguoiDungID == khachDatHang.NguoiDungID);
                 var chiTietDoGiat = db.ChiTietDoGiat.Where(x => x.KhachDatHangID == khachDatHang.KhachDatHangID);
 
                 if (chiTietDoGiat.Any())
                     db.ChiTietDoGiat.RemoveRange(chiTietDoGiat);
 
                 db.Entry(khachDatHang).State = EntityState.Deleted;
+                nguoiDung.DiemThuong -= khachDatHang.ThanhTien / 100;
 
                 await db.SaveChangesAsync();
 

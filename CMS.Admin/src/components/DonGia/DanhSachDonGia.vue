@@ -60,7 +60,7 @@
                                 <td class="text-xs-center">{{props.index + 1}}</td>
                                 <td class="text-xs-center">{{ props.item.HinhThucGiat.TenHinhThuc }}</td>
                                 <td class="text-xs-center">{{ props.item.DoGiat.TenDoGiat }}</td>
-                                <td class="text-xs-center">{{ props.item.GiaTu }}</td>
+                                <td class="text-xs-center">{{ props.item.DonGiaGiat }}</td>
                                 <td>{{ props.item.GhiChu }}</td>
                                 <td class="text-xs-center" style="width:80px;">
                                     <v-layout nowrap>
@@ -115,7 +115,7 @@
                     { text: 'STT', align: 'center', sortable: false },
                     { text: 'Tên hình thức giặt', value: 'HinhThucGiat.TenHinhThuc', align: 'center', sortable: true },
                     { text: 'Tên đồ giặt', value: 'DoGiat.TenDoGiat', align: 'center', sortable: true },
-                    { text: 'Đơn giá', value: 'GiaTu', align: 'center', sortable: false },
+                    { text: 'Đơn giá', value: 'DonGiaGiat', align: 'center', sortable: false },
                     { text: 'Ghi chú', value: 'GhiChu', align: 'center', sortable: false },
                     { text: 'Thao tác', value: '#', align: 'center', sortable: false },
                 ],

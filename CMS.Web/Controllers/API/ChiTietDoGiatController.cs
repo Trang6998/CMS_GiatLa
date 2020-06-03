@@ -66,11 +66,13 @@ namespace CMS.Controllers
                 using (var transaction = db.Database.BeginTransaction())
                 {
                     KhachDatHang kdh = await db.KhachDatHang.SingleOrDefaultAsync(x => x.KhachDatHangID == chiTietDoGiat.KhachDatHangID);
+                    NguoiDung nguoiDung = await db.NguoiDung.SingleOrDefaultAsync(x => x.NguoiDungID == kdh.NguoiDungID);
                     var giaBan = await db.DonGia.FirstOrDefaultAsync(x => x.DoGiatID == chiTietDoGiat.DoGiatID && x.HinhThucGiatID == chiTietDoGiat.HinhThucGiatID);
                     if (giaBan != null)
                     {
-                        int? donGia = giaBan.GiaTu;
+                        int? donGia = giaBan.DonGiaGiat;
                         kdh.ThanhTien += donGia * chiTietDoGiat.SoLuong;
+                        nguoiDung.DiemThuong = kdh.ThanhTien / 100;
                     }
                     var chiTietDoGiatDaCo = await db.ChiTietDoGiat.FirstOrDefaultAsync(x => x.KhachDatHangID == chiTietDoGiat.KhachDatHangID
                                                                                           && x.DoGiatID == chiTietDoGiat.DoGiatID
@@ -106,16 +108,15 @@ namespace CMS.Controllers
                     using (var transaction = db.Database.BeginTransaction())
                     {
                         KhachDatHang kdh = await db.KhachDatHang.SingleOrDefaultAsync(x => x.KhachDatHangID == chiTietDoGiat.KhachDatHangID);
+                        NguoiDung nguoiDung = await db.NguoiDung.SingleOrDefaultAsync(x => x.NguoiDungID == kdh.NguoiDungID);
                         DoGiat doGiat = await db.DoGiat.SingleOrDefaultAsync(x => x.DoGiatID == chiTietDoGiat.DoGiatID);
                         HinhThucGiat hinhThucGiat = await db.HinhThucGiat.SingleOrDefaultAsync(x => x.HinhThucGiatID == chiTietDoGiat.HinhThucGiatID);
 
-                        var giaBan = await db.DonGia.SingleOrDefaultAsync(x => x.DoGiatID == doGiat.DoGiatID && x.HinhThucGiatID == hinhThucGiat.HinhThucGiatID);
-                        int? donGia = giaBan.GiaTu;
+                        var giaBan = await db.DonGia.FirstOrDefaultAsync(x => x.DoGiatID == doGiat.DoGiatID && x.HinhThucGiatID == hinhThucGiat.HinhThucGiatID);
+                        int? donGia = giaBan.DonGiaGiat;
                         kdh.ThanhTien = (kdh.ThanhTien - donGia * chiTietDoGiatCu.SoLuong + donGia * chiTietDoGiat.SoLuong);
+                        nguoiDung.DiemThuong = nguoiDung.DiemThuong - (donGia * chiTietDoGiatCu.SoLuong) / 100 + (donGia * chiTietDoGiat.SoLuong) / 100;
 
-                        await db.SaveChangesAsync();
-
-                        //db.Entry(chiTietDoGiat).State = EntityState.Modified;
                         chiTietDoGiatCu.KhachDatHangID = chiTietDoGiat.KhachDatHangID;
                         chiTietDoGiatCu.HinhThucGiatID = chiTietDoGiat.HinhThucGiatID;
                         chiTietDoGiatCu.DoGiatID = chiTietDoGiat.DoGiatID;
@@ -154,20 +155,18 @@ namespace CMS.Controllers
                         return NotFound();
 
                     KhachDatHang kdh = await db.KhachDatHang.SingleOrDefaultAsync(x => x.KhachDatHangID == chiTietDoGiat.KhachDatHangID);
+                    NguoiDung nguoiDung = await db.NguoiDung.SingleOrDefaultAsync(x => x.NguoiDungID == kdh.NguoiDungID);
                     DoGiat doGiat = await db.DoGiat.SingleOrDefaultAsync(x => x.DoGiatID == chiTietDoGiat.DoGiatID);
                     HinhThucGiat hinhThucGiat = await db.HinhThucGiat.SingleOrDefaultAsync(x => x.HinhThucGiatID == chiTietDoGiat.HinhThucGiatID);
 
                     var giaBan = await db.DonGia.SingleOrDefaultAsync(x => x.DoGiatID == doGiat.DoGiatID && x.HinhThucGiatID == hinhThucGiat.HinhThucGiatID);
-                    int? donGia = giaBan.GiaTu;
+                    int? donGia = giaBan.DonGiaGiat;
+
+                    kdh.ThanhTien -= donGia * chiTietDoGiat.SoLuong;
+                    nguoiDung.DiemThuong -= (donGia * chiTietDoGiat.SoLuong) / 100;
 
                     db.Entry(chiTietDoGiat).State = EntityState.Deleted;
                     await db.SaveChangesAsync();
-                    if (kdh.ThanhTien != 0)
-                    {
-                        kdh.ThanhTien -= donGia * chiTietDoGiat.SoLuong;
-                        await db.SaveChangesAsync();
-                    }                    
-
                     transaction.Commit();
                     return Ok();
                 }

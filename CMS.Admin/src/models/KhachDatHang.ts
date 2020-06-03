@@ -1,5 +1,6 @@
 import { ChiTietDoGiat } from "@/models/ChiTietDoGiat";
 import { NguoiDung } from "@/models/NguoiDung";
+import { Users } from "./Users";
 
 export interface KhachDatHang {
     KhachDatHangID: number;
@@ -11,6 +12,8 @@ export interface KhachDatHang {
     TinhTrangXuLy: number;
     HinhThucThanhToan: number;
     TinhTrangThanhToan: number;
+    UserID: number;
     NguoiDung?: NguoiDung;
+    Users?: Users;
     ChiTietDoGiat?: ChiTietDoGiat[];
 }

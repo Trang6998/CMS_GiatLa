@@ -22,16 +22,6 @@
                             </v-text-field>
                         </v-flex>
                         <v-flex xs12 md6>
-                            <v-text-field v-model="nguoiDung.TenGoi"
-                                          label="Tên gọi" class="ml-1 mr-1"
-                                          :counter="50"
-                                          :error-messages="errors.collect('Tên gọi', 'formNguoiDung')"
-                                          v-validate="'max:50'"
-                                          data-vv-scope="formNguoiDung"
-                                          data-vv-name="Tên gọi">
-                            </v-text-field>
-                        </v-flex>
-                        <v-flex xs12 md6>
                             <v-text-field v-model="nguoiDung.SoDienThoai"
                                           label="Số điện thoại" class="ml-1 mr-1"
                                           :counter="15"
@@ -86,6 +76,15 @@
                                           :error-messages="errors.collect('Gmail', 'formNguoiDung')"
                                           data-vv-scope="formNguoiDung"
                                           data-vv-name="Gmail">
+                            </v-text-field>
+                        </v-flex>
+                        <v-flex xs12 md6>
+                            <v-text-field v-model="nguoiDung.DiemThuong" type="number"
+                                          label="Điểm thưởng" class="ml-1 mr-1" :readonly="true"
+                                          :error-messages="errors.collect('Điểm thưởng', 'formNguoiDung')"
+                                          v-validate="'numeric|min:0'"
+                                          data-vv-scope="formNguoiDung"
+                                          data-vv-name="Điểm thưởng">
                             </v-text-field>
                         </v-flex>
                     </v-layout>

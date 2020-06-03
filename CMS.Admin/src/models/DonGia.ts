@@ -6,8 +6,7 @@ export interface DonGia {
     DonGiaID: number;
     HinhThucGiatID: number;
     DoGiatID: number;
-    GiaTu: number;
-    GiaDen: number;
+    DonGiaGiat: number;
     GhiChu: string;
     DoGiat?: DoGiat;
     HinhThucGiat?: HinhThucGiat;

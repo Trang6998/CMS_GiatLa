@@ -13,6 +13,7 @@ namespace CMS.Models
         public int KhachDatHangID { get; set; }
 
         public int? NguoiDungID { get; set; }
+        public int? UserID { get; set; }
 
         [Column(TypeName = "Date")]
         public DateTime? NgayDat { get; set; }
@@ -28,6 +29,8 @@ namespace CMS.Models
 
         [ForeignKey("NguoiDungID")]
         public virtual NguoiDung NguoiDung { get; set; }
+        [ForeignKey("UserID")]
+        public virtual Users Users { get; set; }
 
         [InverseProperty("KhachDatHang")]
         public virtual ICollection<ChiTietDoGiat> ChiTietDoGiat { get; set; }

@@ -19,7 +19,7 @@ namespace CMS.Controllers
             {
                 IQueryable<NguoiDung> results = db.NguoiDung;
                 if (!string.IsNullOrWhiteSpace(keywords))
-                    results = results.Where(x => x.TenNguoiDung.Contains(keywords) || x.TenGoi.Contains(keywords) || x.DiaChi.Contains(keywords) || x.SoDienThoai.Contains(keywords) || x.SoKhac.Contains(keywords));
+                    results = results.Where(x => x.TenNguoiDung.Contains(keywords) || x.DiaChi.Contains(keywords) || x.SoDienThoai.Contains(keywords) || x.SoKhac.Contains(keywords));
                 results = results.OrderBy(o => o.NguoiDungID);
 
                 return Ok((await GetPaginatedResponseAsync(results, pagination)));
@@ -48,6 +48,7 @@ namespace CMS.Controllers
 
             using (var db = new ApplicationDbContext())
             {
+                nguoiDung.DiemThuong = 0;
                 db.NguoiDung.Add(nguoiDung);
                 await db.SaveChangesAsync();
             }

@@ -7,7 +7,7 @@
 
         <v-toolbar color="teal lighten-2" dark
                    height="50">
-            <a href="https://giatlahp.vn">
+            <a href="https://giatlahp.com">
                 <img v-bind:src="'https://giatlahp.com/images/LOGO%20HP%20NEW-01.png'" style="margin-top: 5px" height="36" alt="GiatLaHP">
             </a>
             <v-toolbar-title class="ml-0 pl-3">
@@ -182,7 +182,7 @@
                         link: '/luottruycap'
                     },
                     {
-                        icon: 'account_circle',
+                        icon: 'account_circle', 
                         title: 'Quản lý tài khoản',
                         show: this.user.LoaiTaiKhoanID == 4,
                         link: '/users'

@@ -15,7 +15,7 @@ namespace CMS.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
         public int UserId { get; set; }
-
+        public int? CoSoID { get; set; }
         public int? LoaiTaiKhoanID { get; set; }
 
         [Required(AllowEmptyStrings = true)]
@@ -38,9 +38,19 @@ namespace CMS.Models
 
         [MaxLength(2)]
         public string Lang { get; set; }
-
+        [MaxLength(50)]
+        public string HoTen { get; set; }
+        [MaxLength(20)]
+        public string SoDienThoai { get; set; }
+        [MaxLength(200)]
+        public string DiaChi { get; set; }
         [ForeignKey("LoaiTaiKhoanID")]
         public virtual LoaiTaiKhoan LoaiTaiKhoan { get; set; }
 
+        [ForeignKey("CoSoID")]
+        public virtual CoSo CoSo { get; set; }
+
+        [InverseProperty("Users")]
+        public virtual ICollection<KhachDatHang> KhachDatHang { get; set; }
     }
 }

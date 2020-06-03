@@ -28,8 +28,8 @@ namespace CMS.Controllers
 
                 if (hinhThucGiatID.HasValue) results = results.Where(o => o.HinhThucGiatID == hinhThucGiatID);
                 if (doGiatID.HasValue) results = results.Where(o => o.DoGiatID == doGiatID);
-                if (giaTu.HasValue) results = results.Where(o => o.GiaTu >= giaTu);
-                if (giaDen.HasValue) results = results.Where(o => o.GiaTu <= giaDen);
+                if (giaTu.HasValue) results = results.Where(o => o.DonGiaGiat >= giaTu);
+                if (giaDen.HasValue) results = results.Where(o => o.DonGiaGiat <= giaDen);
 
                 results = results.OrderBy(o => o.DonGiaID);
 

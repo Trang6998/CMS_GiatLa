@@ -27,8 +27,8 @@
                                     {{props.index+1}}
                                 </td>
                                 <td class="text-xs-center" style="width:200px">{{ props.item.TenNguoiDung }}</td>
-                                <td class="text-xs-center" style="width:200px">{{ props.item.TenGoi }}</td>
                                 <td class="text-xs-center" style="width:200px">{{ props.item.SoDienThoai }}</td>
+                                <td class="text-xs-center" style="width:200px">{{ props.item.DiemThuong }}</td>
                                 <td>{{ props.item.DiaChi }}</td>
                                 <td class="text-xs-center text-no-wrap" style="width:80px;">
                                     <v-btn icon small class="mx-0" @click="showModalThemSua(true,props.item)">
@@ -74,8 +74,8 @@
                 tableHeader: [
                     { text: 'STT', value: '#', align: 'center', sortable: false },
                     { text: 'Tên người dùng', value: 'TenNguoiDung', align: 'center', sortable: true },
-                    { text: 'Tên gọi', value: 'TenGoi', align: 'center', sortable: true },
                     { text: 'Số điện thoại', value: 'SoDienThoai', align: 'center', sortable: false },
+                    { text: 'Điểm thưởng', value: 'DiemThuong', align: 'center', sortable: true },
                     { text: 'Địa chỉ', value: 'DiaChi', align: 'center', sortable: false },
                     { text: 'Thao tác', value: '#', align: 'center', sortable: false },
                 ],

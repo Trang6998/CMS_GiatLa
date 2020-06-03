@@ -11,6 +11,7 @@ export interface NguoiDung {
     TaiKhoan: string;
     Facebook: string;
     Gmail: string;
+    DiemThuong: number;
     KhachDatHang?: KhachDatHang[];
     LienHe?: LienHe[];
 }

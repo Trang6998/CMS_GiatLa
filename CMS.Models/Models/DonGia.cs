@@ -15,9 +15,7 @@ namespace CMS.Models
 
         public int? DoGiatID { get; set; }
 
-        public int? GiaTu { get; set; }
-
-        public int? GiaDen { get; set; }
+        public int? DonGiaGiat { get; set; }
 
         public string GhiChu { get; set; }
 

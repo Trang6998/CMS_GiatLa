@@ -36,7 +36,7 @@
                                       required></v-autocomplete>
                         </v-flex>
                         <v-flex xs12>
-                            <v-text-field v-model="donGia.GiaTu"
+                            <v-text-field v-model="donGia.DonGiaGiat"
                                           label="Đơn giá" type="number"
                                           :error-messages="errors.collect('Giá từ', 'formDonGia')"
                                           v-validate="'required|numeric'" class="mr-1 ml-1"
