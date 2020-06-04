@@ -57,7 +57,8 @@ namespace CMS.Controllers
                                     Username = user.UserName,
                                     Email = user.Email,
                                     LoaiTaiKhoanID = user.LoaiTaiKhoanID,
-                                    LoaiTaiKhoan = user.LoaiTaiKhoan.TenLoai
+                                    LoaiTaiKhoan = user.LoaiTaiKhoan.TenLoai,
+                                    CoSoID = user.CoSoID
                                 }
                             });
                     }

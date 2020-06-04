@@ -95,7 +95,7 @@ namespace CMS.Controllers
                 if (coSoID.HasValue && coSoID > 0)
                 {
                     lstDonDatHangHomNay = lstDonDatHangHomNay.Where(x => x.Users.CoSoID == coSoID).ToList();
-                    lstDonDatHangHomQua = lstDonDatHangHomNay.Where(x => x.Users.CoSoID == coSoID).ToList();
+                    lstDonDatHangHomQua = lstDonDatHangHomQua.Where(x => x.Users.CoSoID == coSoID).ToList();
                 }
                 //if (lstDonDatHangHomNay == null || lstDonDatHangHomQua == null)
                 //{

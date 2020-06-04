@@ -10,6 +10,7 @@ export interface KhachDatHangApiSearchParams extends Pagination {
     trangThai?: number;
     gioLayDo?: number;
     thanhToan?: number;
+    coSoID?: number;
 }
 class KhachDatHangApi extends BaseApi {
     search(searchParams: KhachDatHangApiSearchParams): Promise<PaginatedResponse<KhachDatHang>> {

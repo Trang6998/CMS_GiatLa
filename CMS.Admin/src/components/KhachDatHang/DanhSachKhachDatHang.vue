@@ -8,7 +8,7 @@
                     <v-btn @click="showModalThemSua(false, {})" color="teal lighten-2" style="float: right " dark small><v-icon small class="px-0">add</v-icon> Thêm Mới</v-btn>
                 </v-layout>
                 <v-layout row wrap>
-                    <v-flex xs12 md6>
+                    <v-flex xs12 md3>
                         <v-text-field v-model="searchParamsKhachDatHang.keywords"
                                       @input="getDataFromApi(searchParamsKhachDatHang)"
                                       hide-details
@@ -16,6 +16,14 @@
                                       label="Tìm kiếm"
                                       placeholder="Tìm kiếm theo tên..."
                                       class="mb-2 mt-1"></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 md3>
+                        <v-autocomplete v-model="searchParamsKhachDatHang.coSoID"
+                                        :items="dsCoSo" hide-details
+                                        item-text="TenCoSo" 
+                                        item-value="CoSoID" placeholder="Chọn cơ sở / đại lý / CTV"
+                                        :readonly="!isAdmin" @change="getDataFromApi(searchParamsKhachDatHang)"
+                                        label="Cơ sở / đại lý / CTV"></v-autocomplete>
                     </v-flex>
                     <v-flex xs6 md3>
                         <v-datepicker @input="getDataFromApi(searchParamsKhachDatHang)"
@@ -106,6 +114,8 @@
     import KhachDatHangApi, { KhachDatHangApiSearchParams } from '@/apiResources/KhachDatHangApi';
     import { KhachDatHang } from '@/models/KhachDatHang';
     import ThemSuaKhachDatHang from './ThemSuaKhachDatHang.vue';
+import { CoSo } from '../../models/CoSo';
+import CoSoApi, { CoSoApiSearchParams } from '../../apiResources/CoSoApi';
 
     export default Vue.extend({
         components: {
@@ -129,11 +139,17 @@
                 selectedKhachDatHang: {} as KhachDatHang,
                 dialogConfirmDelete: false,
                 search: "",
+                searchParamsCoSo: { rowsPerPage: 0 } as CoSoApiSearchParams,
+                dsCoSo: [] as CoSo[],
+                coSoID: this.$store.state.user.Profile.CoSoID,
+                isAdmin: this.$store.state.user.Profile.LoaiTaiKhoanID == 4  
             }
         },
         watch: {
         },
         created() {
+            this.getCoSo();
+            this.searchParamsKhachDatHang.coSoID = this.coSoID;
             this.getDataFromApi(this.searchParamsKhachDatHang);
         },
         methods: {
@@ -160,6 +176,11 @@
                 }).catch(res => {
                     this.$snotify.error('Xóa thất bại!');
                 });
+            },
+            getCoSo(): void {
+                CoSoApi.search(this.searchParamsCoSo).then(res => {
+                    this.dsCoSo = res.Data;
+                })
             },
         }
     });

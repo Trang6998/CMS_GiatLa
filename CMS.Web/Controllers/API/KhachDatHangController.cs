@@ -22,7 +22,8 @@ namespace CMS.Controllers
                                                     [FromUri]string keywords = null,
                                                     [FromUri]int? trangThai = null,
                                                     [FromUri]int? gioLayDo = null,
-                                                    [FromUri]int? thanhToan = null)
+                                                    [FromUri]int? thanhToan = null,
+                                                    [FromUri]int? coSoID = null)
         {
             using (var db = new ApplicationDbContext())
             {
@@ -31,7 +32,7 @@ namespace CMS.Controllers
                     pagination = new Pagination();
                 if (pagination.includeEntities)
                 {
-                    results = results.Include(o => o.NguoiDung);
+                    results = results.Include(o => o.NguoiDung).Include(o => o.Users);
                 }
 
                 if (nguoiDungID.HasValue) results = results.Where(o => o.NguoiDungID == nguoiDungID);
@@ -41,6 +42,7 @@ namespace CMS.Controllers
                 if (trangThai.HasValue) results = results.Where(o => o.TinhTrangXuLy == trangThai);
                 if (gioLayDo.HasValue) results = results.Where(o => o.GioDat == gioLayDo);
                 if (thanhToan.HasValue) results = results.Where(o => o.TinhTrangThanhToan == thanhToan);
+                if (coSoID.HasValue) results = results.Where(o => o.Users.CoSoID == coSoID);
 
                 results = results.OrderByDescending(o => o.NgayDat);
 

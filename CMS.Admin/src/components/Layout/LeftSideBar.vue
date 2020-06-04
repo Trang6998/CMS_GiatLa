@@ -134,9 +134,15 @@
                     //    ]
                     //},
                     {
+                        icon: 'poll',
+                        title: 'Thống kê',
+                        show: true,
+                        link: '/'
+                    },
+                    {
                         icon: 'flag',
                         title: 'Quản lý hình thức giặt',
-                        show: this.user.LoaiTaiKhoanID == 4 || this.user.LoaiTaiKhoanID ==2,
+                        show: this.user.LoaiTaiKhoanID == 4 || this.user.LoaiTaiKhoanID == 2,
                         link: '/hinhthucgiat'
                     },
                     {

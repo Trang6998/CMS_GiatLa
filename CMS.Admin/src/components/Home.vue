@@ -5,20 +5,20 @@
                             :items="dsCoSo"
                             item-text="TenCoSo"
                             item-value="CoSoID"
-                            label="Chọn đơn cơ sở / đại lý / CTV cần thống kê"></v-autocomplete>
+                            :readonly="!isAdmin" @change="thayDoiCoSo()"
+                            label="Cơ sở / đại lý / CTV thống kê"></v-autocomplete>
         </v-layout>
         <v-layout row wrap class="ma-3">
             
             <h2 style="padding: 10px 10px 0px 0px">Thống kê số liệu trong ngày: </h2>
             <v-flex xs3 style="margin-top: -16px">
-                <v-datepicker v-model="searchParamsThongKeNgay.ngay"></v-datepicker>
-                <v-btn @click="thongKeNgay()">Ok</v-btn>
+                <v-datepicker v-model="searchParamsThongKeNgay.ngay" @input="thongKeNgay()"></v-datepicker>
             </v-flex><v-flex xs5></v-flex>
             <v-flex xs6>
                 <v-card style="width: 100%; background-color: #4db6ac" class="pa-3">
                     <h2 style="text-align: center; color: white">Số đơn</h2>
                     <h2 style="text-align: center; color: white">{{thongTinThongKeTrongNgay.soDon}}</h2>
-                    <h3 style="text-align: center; color: white"><i>({{thongTinThongKeTrongNgay.soDonTang > 0 ? 'Tăng ' + thongTinThongKeTrongNgay.soDonTang : 'Giảm ' + Math.abs(thongTinThongKeTrongNgay.soDonTang)}} đơn so với hôm qua)</i></h3>
+                    <h3 style="text-align: center; color: white"><i>({{thongTinThongKeTrongNgay.soDonTang >= 0 ? 'Tăng ' + thongTinThongKeTrongNgay.soDonTang : 'Giảm ' + Math.abs(thongTinThongKeTrongNgay.soDonTang)}} đơn so với hôm qua)</i></h3>
                 </v-card>
             </v-flex>
             <v-flex xs6>
@@ -106,14 +106,13 @@ import CoSoApi, { CoSoApiSearchParams } from '../apiResources/CoSoApi';
                     doanhThuTang: 0
                 },
                 searchParamsCoSo: { rowsPerPage: 0 } as CoSoApiSearchParams,
-                dsCoSo: [] as CoSo[]
+                dsCoSo: [] as CoSo[],
+                coSoID: this.$store.state.user.Profile.CoSoID,
+                isAdmin: this.$store.state.user.Profile.LoaiTaiKhoanID == 4  
             }
         },
         watch: {
-            'searchParamsThongKeNgay.coSoID': function () {
-                debugger
-                this.searchParamsThongKeTuan.coSoID = this.searchParamsThongKeNgay.coSoID;
-            }
+
         },
         created() {
             this.dsNam = [] as number[]
@@ -121,6 +120,8 @@ import CoSoApi, { CoSoApiSearchParams } from '../apiResources/CoSoApi';
             for (let i = -10; i <= 10; i++) {
                 this.dsNam.push(parseInt(currentYear) + i);
             }
+            this.searchParamsThongKeNgay.coSoID = this.coSoID;
+            this.searchParamsThongKeTuan.coSoID = this.coSoID;            
             this.searchParamsThongKeTuan.tuan = this.$moment().week() - this.$moment().startOf('month').week() + 1
             this.searchParamsThongKeTuan.thang = this.$moment().month() + 1
             this.searchParamsThongKeTuan.nam = currentYear;
@@ -129,6 +130,12 @@ import CoSoApi, { CoSoApiSearchParams } from '../apiResources/CoSoApi';
             this.getCoSo();
         },
         methods: {
+            thayDoiCoSo() {
+                this.searchParamsThongKeTuan.coSoID = this.searchParamsThongKeNgay.coSoID;
+
+                this.thongKeNgay()
+                this.thongKeTuan()
+            },
             thongKeTuan() {
                 this.chartData = [
                     ['Week', 'Doanh thu (100.000 VND)', 'Số đơn'],
