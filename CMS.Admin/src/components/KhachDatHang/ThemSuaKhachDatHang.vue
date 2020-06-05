@@ -32,7 +32,7 @@
                                       item-value="value"
                                       label="Hình thức thanh toán"
                                       :error-messages="errors.collect('Hình thức thanh toán', 'formKhachDatHang')"
-                                      v-validate="'required'"
+                                      v-validate="''"
                                       data-vv-scope="formKhachDatHang"
                                       data-vv-name="Hình thức thanh toán" class="mr-1 ml-1"
                                       required></v-select>
@@ -140,10 +140,10 @@
                             <v-flex xs6 md2>
 
                                 <v-btn color="orange lighten-2" v-show="!checkReadOnly" style="float: right" fab dark small @click="reloadChiTietDoGiat()">
-                                    <v-icon small class="px-0">autorenew</v-icon>
+                                    <v-icon small class="px-0" style="padding-top: 12px">autorenew</v-icon>
                                 </v-btn>
                                 <v-btn color="orange lighten-2" v-show="!checkReadOnly" style="float: right" fab dark small @click="saveChiTietDoGiat()">
-                                    <v-icon small class="px-0">{{isUpdateChTiet == false ? 'add' :'save'}}</v-icon>
+                                    <v-icon small class="px-0" style="padding-top: 12px">{{isUpdateChTiet == false ? 'add' :'save'}}</v-icon>
                                 </v-btn>
                             </v-flex>
                         </v-layout>

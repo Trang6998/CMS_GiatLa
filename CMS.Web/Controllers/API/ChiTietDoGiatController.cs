@@ -72,7 +72,7 @@ namespace CMS.Controllers
                     {
                         int? donGia = giaBan.DonGiaGiat;
                         kdh.ThanhTien += donGia * chiTietDoGiat.SoLuong;
-                        nguoiDung.DiemThuong = kdh.ThanhTien / 100;
+                        nguoiDung.DiemThuong += kdh.ThanhTien / 100;
                     }
                     var chiTietDoGiatDaCo = await db.ChiTietDoGiat.FirstOrDefaultAsync(x => x.KhachDatHangID == chiTietDoGiat.KhachDatHangID
                                                                                           && x.DoGiatID == chiTietDoGiat.DoGiatID

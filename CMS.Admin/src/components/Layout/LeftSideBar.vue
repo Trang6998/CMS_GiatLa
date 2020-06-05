@@ -8,7 +8,7 @@
         <v-toolbar color="teal lighten-2" dark
                    height="50">
             <a href="https://giatlahp.com">
-                <img v-bind:src="'https://giatlahp.com/images/LOGO%20HP%20NEW-01.png'" style="margin-top: 5px" height="36" alt="GiatLaHP">
+                <img src="../../../public/static/img/LOGO HP NEW-01.png" style="margin-top: 5px" height="36" alt="GiatLaHP" />
             </a>
             <v-toolbar-title class="ml-0 pl-3">
                 <span class="hidden-sm-and-down" style="font-size:20px;">Quản lý giặt là</span>
@@ -181,14 +181,20 @@
                         show: this.user.LoaiTaiKhoanID == 4 || this.user.LoaiTaiKhoanID ==2,
                         link: '/lienhe'
                     },
+                    //{
+                    //    icon: 'insert_chart',
+                    //    title: 'Thống kê lượt truy cập',
+                    //    show: this.user.LoaiTaiKhoanID == 4,
+                    //    link: '/luottruycap'
+                    //},
                     {
-                        icon: 'insert_chart',
-                        title: 'Thống kê lượt truy cập',
+                        icon: 'view_stream', 
+                        title: 'Hệ thống cơ sở',
                         show: this.user.LoaiTaiKhoanID == 4,
-                        link: '/luottruycap'
+                        link: '/coso'
                     },
                     {
-                        icon: 'account_circle', 
+                        icon: 'account_circle',
                         title: 'Quản lý tài khoản',
                         show: this.user.LoaiTaiKhoanID == 4,
                         link: '/users'

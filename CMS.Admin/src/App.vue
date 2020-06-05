@@ -13,7 +13,7 @@
                 <v-btn icon large slot="activator" dark>
                     <v-avatar size="42px">
                         <!-- <img :src="user.photo + '?' + new Date().getTime()" :alt="user.fullName" /> -->
-                        <img src="https://community.smartsheet.com/sites/default/files/default_user.jpg" :alt="user?user.Username:''" />
+                        <img src="../public/static/img/avataruser.png" :alt="user?user.Username:''" />
                     </v-avatar>
                 </v-btn>
                 <v-list>
